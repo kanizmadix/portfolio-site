@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
+/* No `scroll-behavior: smooth` here — Lenis owns scrolling and the two fight
+   over anchor jumps. Anchor smoothness comes from Lenis (`anchors: true`). */
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0a0a;
+  color: #ededed;
+  font-family: var(--font-geist-sans, system-ui, sans-serif);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 2px;
+}
+
+/* Gradient accent text */
+.gradient-text {
+  background: linear-gradient(135deg, #818cf8 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle dot-grid background texture */
+.dot-grid {
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Animated film grain overlay ────────────────────────────────────────────
+   A 300% oversized fixed pseudo-element drifts in random steps — the size
+   excess means no edge artifacts as it translates. Mix-blend-mode: overlay
+   makes it brighten highlights and darken shadows for a true film look.    */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  z-index: 9995;
+  pointer-events: none;
+  opacity: 0.048;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  animation: grain 0.85s steps(1) infinite;
+}
+
+@keyframes grain {
+  0%   { transform: translate(0, 0); }
+  11%  { transform: translate(-6%, -11%); }
+  22%  { transform: translate(-14%, 6%); }
+  33%  { transform: translate(8%, -24%); }
+  44%  { transform: translate(-4%, 26%); }
+  55%  { transform: translate(-16%, 11%); }
+  66%  { transform: translate(14%, 1%); }
+  77%  { transform: translate(1%, 16%); }
+  88%  { transform: translate(4%, 34%); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; opacity: 0.02; }
+}
+
+/* ── Custom cursor — hide native pointer on mouse-driven devices ─────────── */
+@media (pointer: fine) {
+  html, body { cursor: none; }
+  a, button, input, textarea, select, label, [role="button"] { cursor: none; }
 }

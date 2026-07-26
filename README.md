@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kanishk S — Portfolio
 
-## Getting Started
+Next.js 16 · Tailwind CSS v4 · Framer Motion · TypeScript
 
-First, run the development server:
+## Dev
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev   # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Swapping your photo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Replace `/public/hero.png` with any image — keep the filename or update the `src` prop in `sections/Hero.tsx` (the `<Image src="/hero.png" …>` line). Portrait crops work best (`object-cover object-top`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing your content
 
-## Learn More
+**All personal data lives in `data/portfolio.ts`** — one file, fully typed. Edit there to update:
 
-To learn more about Next.js, take a look at the following resources:
+| Key | What it controls |
+|---|---|
+| `name`, `role`, `tagline`, `bio` | Hero text and About bio |
+| `email`, `github`, `linkedin` | Nav "Hire me" link + Contact cards |
+| `skills[]` | Skill pills — set `category` for colour-coding |
+| `projects[]` | Project cards — `link` goes to repo or live demo |
+| `experience[]` | Timeline entries |
+| `certifications[]` | Cert badges in the About panel |
+| `education` | Education card in About |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Replace `[YOUR-LINKEDIN-HANDLE]` in the `linkedin` field with your actual LinkedIn slug (e.g. `linkedin.com/in/kanishks`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Phase 2 — Scroll image sequence
 
-## Deploy on Vercel
+See the comment block at the bottom of `sections/Hero.tsx`. In short:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Export JPEG frames to `/public/sequence/frame-001.jpg`, `frame-002.jpg`, …
+2. Implement the `useScroll` / `useTransform` frame-index logic described in the comment.
+3. Make the section taller (200–300 vh) to control playback speed.
