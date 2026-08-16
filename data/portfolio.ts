@@ -65,42 +65,63 @@ const portfolio = {
       description:
         "3-agent orchestration (Planner → Executor → Validator) with live SSE streaming. Agents communicate via structured JSON; the frontend shows real-time progress.",
       tech: ["Python", "FastAPI", "Anthropic Claude", "SSE", "Pydantic"],
-      link: "https://github.com/kanizmadix",
+      link: "https://kanizmadix.github.io/ai-multi-agent-planner/",
     },
     {
       name: "RAG Document Q&A",
       description:
         "Enterprise-grade RAG pipeline — PDF extraction, FAISS vector indexing with sentence-transformers, and Claude-powered Q&A with inline source citations.",
       tech: ["Python", "FAISS", "sentence-transformers", "Anthropic Claude", "FastAPI"],
-      link: "https://github.com/kanizmadix",
+      link: "https://kanizmadix.github.io/ai-document-qa/",
     },
     {
       name: "AI Résumé Generator",
       description:
         "Generates ATS-optimised résumés and cover letters with skill matching, ATS scoring, interview prep, and PDF export. Prompt caching cuts cost by ~90%.",
       tech: ["Python", "FastAPI", "Anthropic Claude", "ReportLab", "SQLite"],
-      link: "https://github.com/kanizmadix",
+      link: "https://kanizmadix.github.io/ai-resume-generator/",
     },
     {
       name: "Natural Language → SQL",
       description:
         "Schema-aware NL-to-SQL engine with query explanation, optimisation hints, Mermaid ERD visualisation, and Excel/CSV export.",
       tech: ["Python", "FastAPI", "SQLite", "Anthropic Claude", "OpenPyXL"],
-      link: "https://github.com/kanizmadix",
+      link: "https://kanizmadix.github.io/ai-sql-assistant/",
     },
     {
       name: "Movie Recommendation System",
       description:
         "Hybrid content-based and collaborative filtering engine using IMDbPy. ML algorithms analyse user preferences to deliver personalised movie suggestions.",
       tech: ["Python", "IMDbPy", "Scikit-Learn", "Pandas", "Collaborative Filtering"],
-      link: "https://github.com/kanizmadix",
+      link: "https://github.com/kanizmadix/Movie-Recommender-System-master",
     },
     {
       name: "Formula One: Speed Meets Data",
       description:
         "F1 pitstop and lap-time analysis with 2025 standings prediction via linear regression. Includes Tableau dashboards and a Streamlit sponsor platform.",
       tech: ["Python", "Tableau", "Streamlit", "Linear Regression", "Pandas"],
-      link: "https://github.com/kanizmadix",
+      link: "https://github.com/kanizmadix/Formula1",
+    },
+    {
+      name: "OpenTrails",
+      description:
+        "Open-data travel platform aggregating OpenStreetMap, Open-Meteo, Wikivoyage and Amadeus, with Claude generating day-by-day itineraries, packing lists and destination intel.",
+      tech: ["Python", "FastAPI", "Anthropic Claude", "httpx", "Leaflet", "SQLite"],
+      link: "https://kanizmadix.github.io/opentrails/",
+    },
+    {
+      name: "Nova — Multilingual Voice Assistant",
+      description:
+        "Offline wake-word assistant covering English plus 22 Indian languages, using AI4Bharat IndicTrans2, IndicConformer and Parler-TTS with faster-whisper for speech-to-text.",
+      tech: ["Python", "faster-whisper", "AI4Bharat", "PyTorch", "FastAPI", "WebSockets"],
+      link: "https://kanizmadix.github.io/super-nova/",
+    },
+    {
+      name: "Nova — Desktop Voice Control",
+      description:
+        "Wake-word CLI that transcribes speech locally with Whisper and drives real OS actions: launching apps, screenshots, clipboard, typing and system control across macOS, Linux and Windows.",
+      tech: ["Python", "faster-whisper", "sounddevice", "pyautogui", "pyttsx3"],
+      link: "https://kanizmadix.github.io/voice-nova/",
     },
   ] as Project[],
 
