@@ -218,7 +218,7 @@ export default function Hero() {
                       {/* Frame */}
                       <div className="relative w-64 sm:w-72 md:w-80 lg:w-[26rem] h-[22rem] sm:h-[26rem] md:h-[30rem] lg:h-[36rem] rounded-[1.75rem] overflow-hidden border border-white/12 shadow-2xl shadow-black/70">
                         <Image
-                          src="/hero.png"
+                          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/hero.png`}
                           alt={portfolio.name}
                           fill
                           sizes="(min-width: 1024px) 416px, (min-width: 768px) 320px, 288px"

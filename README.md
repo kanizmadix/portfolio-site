@@ -27,7 +27,7 @@ Replace `/public/hero.png` with any image — keep the filename or update the `s
 | `certifications[]` | Cert badges in the About panel |
 | `education` | Education card in About |
 
-Replace `[YOUR-LINKEDIN-HANDLE]` in the `linkedin` field with your actual LinkedIn slug (e.g. `linkedin.com/in/kanishks`).
+Contact cards derive their visible label from the URL, so `github` and `linkedin` only need the full profile URL. Leave either one empty and its card is dropped instead of rendering a dead link.
 
 ## Phase 2 — Scroll image sequence
 

@@ -31,6 +31,11 @@ const LinkedInIcon = () => (
   </svg>
 );
 
+// Turns "https://www.linkedin.com/in/handle/" into "linkedin.com/in/handle"
+// so the visible label always matches the href in data/portfolio.ts.
+const displayUrl = (url: string) =>
+  url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+
 export default function Contact() {
   const links: Link[] = [
     {
@@ -42,20 +47,20 @@ export default function Contact() {
     },
     {
       label: "GitHub",
-      value: "github.com/kanishks",
+      value: displayUrl(portfolio.github),
       href: portfolio.github,
       external: true,
       icon: <GitHubIcon />,
     },
     {
       label: "LinkedIn",
-      // ↓ Replace [YOUR-LINKEDIN-HANDLE] in data/portfolio.ts with your real handle
-      value: "linkedin.com/in/[YOUR-LINKEDIN-HANDLE]",
+      value: displayUrl(portfolio.linkedin),
       href: portfolio.linkedin,
       external: true,
       icon: <LinkedInIcon />,
     },
-  ];
+    // Drop any card whose URL hasn't been filled in rather than rendering a dead link.
+  ].filter((link) => link.href);
 
   return (
     <section id="contact" className="px-6 md:px-16 lg:px-24 py-28 md:py-36">
