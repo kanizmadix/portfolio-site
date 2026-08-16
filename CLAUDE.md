@@ -45,11 +45,16 @@ Also: do **not** put `scroll-behavior: smooth` on `html` when Lenis is active. U
 
 ---
 
-## AI Projects (sub-directories)
+## AI Projects (separate repositories — NOT in this repo)
 
-This repo also contains 9 independent AI projects. Five are featured projects:
+These projects used to live in sub-directories here; they now each have their own
+repository under `github.com/kanizmadix`. **This repo is the portfolio site only** — it has no
+Python, no backend, and no API keys. The notes below are kept as reference for those repos.
 
-| Directory | What it does |
+They are deliberately not deployed as live demos, since running them would require shipping an
+`ANTHROPIC_API_KEY`. Users clone a repo, supply their own key in `.env`, and run it locally.
+
+| Project | What it does |
 |---|---|
 | `resume-generator/` | AI résumé + cover letter generator with ATS scoring and PDF export |
 | `meeting-assistant/` | AI transcript analyser with 3-stage pipeline and iCalendar export |

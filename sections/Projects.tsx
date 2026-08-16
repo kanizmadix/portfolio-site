@@ -1,5 +1,6 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import portfolio from "@/data/portfolio";
 
@@ -18,7 +19,19 @@ export default function Projects() {
   return (
     <section id="projects" className="px-6 md:px-16 lg:px-24 py-28 md:py-36">
       <div className="max-w-7xl mx-auto">
-        <SectionHeading eyebrow="Projects" heading="Things I've built" />
+        <SectionHeading eyebrow="Projects" heading="Things I've built" headingClass="mb-5" />
+
+        {/* The LLM-backed projects aren't hosted as live demos on purpose — running
+            them would mean shipping my own API key. Visitors bring their own. */}
+        <AnimatedSection delay={0.1}>
+          <p className="text-white/45 text-sm md:text-base max-w-2xl mb-12 leading-relaxed">
+            The Claude-powered projects run locally rather than as public demos — clone the repo,
+            add your own{" "}
+            <code className="font-mono text-white/65 text-[0.9em]">ANTHROPIC_API_KEY</code> to{" "}
+            <code className="font-mono text-white/65 text-[0.9em]">.env</code>, and run it. Each repo
+            has setup steps in its README.
+          </p>
+        </AnimatedSection>
 
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
