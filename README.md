@@ -2,6 +2,12 @@
 
 Next.js 16 · Tailwind CSS v4 · Framer Motion · TypeScript
 
+## Live Site
+
+**https://kanizmadix.github.io/portfolio-site/**
+
+The portfolio is statically exported and deployed to GitHub Pages from `main` through `.github/workflows/deploy.yml`. Project cards link to each project’s live showcase or source repository.
+
 ## Dev
 
 ```bash
