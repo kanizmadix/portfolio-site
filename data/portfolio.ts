@@ -42,7 +42,6 @@ const portfolio = {
   bio: "I'm a Generative AI Engineer with hands-on experience designing and deploying LLM-powered systems. I specialise in prompt engineering, LLM pipeline architecture, RAG-based chatbots, and Intelligent Document Processing — delivering production-ready GenAI workflows on AWS. AWS Certified Solutions Architect – Associate.",
   location: "Coimbatore, Tamil Nadu",
   email: "kanishk0070@gmail.com",
-  phone: "+91 8870658170",
   github: "https://github.com/kanizmadix",
   // Set to your full LinkedIn profile URL. Left empty, the Contact card is
   // omitted rather than rendering a broken link.

@@ -1,0 +1,16 @@
+# Kanishk S
+
+> Building LLM-powered systems that transform unstructured data into structured intelligence.
+
+I'm a Generative AI Engineer with hands-on experience designing and deploying LLM-powered systems. I specialise in prompt engineering, LLM pipeline architecture, RAG-based chatbots, and Intelligent Document Processing — delivering production-ready GenAI workflows on AWS. AWS Certified Solutions Architect – Associate.
+
+## Sections
+
+- [About](https://kanizmadix.github.io/portfolio-site/#about) — background, certifications, education
+- [Skills](https://kanizmadix.github.io/portfolio-site/#skills) — core stack (cloud, data, GenAI & agent engineering) plus frontend/other tooling
+- [Projects](https://kanizmadix.github.io/portfolio-site/#projects) — 9 shipped AI/data projects
+- [Publications](https://kanizmadix.github.io/portfolio-site/#publications) — written work
+- [Experience](https://kanizmadix.github.io/portfolio-site/#experience) — work history
+- [Contact](https://kanizmadix.github.io/portfolio-site/#contact) — kanishk0070@gmail.com
+
+Machine-readable resume: https://kanizmadix.github.io/portfolio-site/resume.json

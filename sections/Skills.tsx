@@ -1,7 +1,9 @@
 "use client";
-import { ComponentType } from "react";
+import { ComponentType, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { LayoutGrid, Share2 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
+import KnowledgeGraph from "@/components/ui/KnowledgeGraph";
 
 // Real brand logos via react-icons
 import {
@@ -143,8 +145,11 @@ function SecondaryChip({ skill, i, reduced }: { skill: Skill; i: number; reduced
   );
 }
 
+type SkillsView = "grid" | "graph";
+
 export default function Skills() {
   const prefersReduced = !!useReducedMotion();
+  const [view, setView] = useState<SkillsView>("grid");
 
   return (
     <section
@@ -156,27 +161,77 @@ export default function Skills() {
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[300px] bg-[radial-gradient(ellipse,rgba(139,92,246,0.05)_0%,transparent_70%)] pointer-events-none blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <SectionHeading eyebrow="Skills" heading="What I work with" headingClass="mb-10" />
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+          <SectionHeading eyebrow="Skills" heading="What I work with" headingClass="mb-0" />
 
-        {/* ── Primary: cloud, data, Python & the GenAI/agent stack ── */}
-        <p className="text-[10px] tracking-[0.22em] uppercase text-white/25 font-mono mb-5">
-          Core stack — cloud · data · GenAI &amp; agent engineering
-        </p>
-        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-11 gap-3 md:gap-4 mb-16">
-          {primarySkills.map((skill, i) => (
-            <PrimaryTile key={skill.name} skill={skill} i={i} reduced={prefersReduced} />
-          ))}
+          {/* Grid / Graph view toggle */}
+          <div
+            role="tablist"
+            aria-label="Skills view"
+            className="flex items-center gap-1 p-1 rounded-full flex-shrink-0"
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            {(
+              [
+                { key: "grid" as const, label: "Grid", icon: LayoutGrid },
+                { key: "graph" as const, label: "Graph", icon: Share2 },
+              ]
+            ).map(({ key, label, icon: Icon }) => {
+              const active = view === key;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setView(key)}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-medium transition-colors cursor-pointer"
+                  style={{
+                    background: active ? "rgba(99,102,241,0.18)" : "transparent",
+                    color: active ? "#a5b4fc" : "rgba(255,255,255,0.45)",
+                    border: active ? "1px solid rgba(99,102,241,0.4)" : "1px solid transparent",
+                  }}
+                >
+                  <Icon size={13} />
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* ── Secondary: frontend + everything else ── */}
-        <p className="text-[10px] tracking-[0.22em] uppercase text-white/25 font-mono mb-5">
-          Also comfortable with — frontend &amp; other tooling
-        </p>
-        <div className="flex flex-wrap gap-2.5">
-          {secondarySkills.map((skill, i) => (
-            <SecondaryChip key={skill.name} skill={skill} i={i} reduced={prefersReduced} />
-          ))}
-        </div>
+        {view === "graph" ? (
+          <motion.div
+            initial={prefersReduced ? {} : { opacity: 0, y: 12 }}
+            animate={prefersReduced ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-16"
+          >
+            <KnowledgeGraph />
+          </motion.div>
+        ) : (
+          <>
+            {/* ── Primary: cloud, data, Python & the GenAI/agent stack ── */}
+            <p className="text-[10px] tracking-[0.22em] uppercase text-white/25 font-mono mb-5">
+              Core stack — cloud · data · GenAI &amp; agent engineering
+            </p>
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-11 gap-3 md:gap-4 mb-16">
+              {primarySkills.map((skill, i) => (
+                <PrimaryTile key={skill.name} skill={skill} i={i} reduced={prefersReduced} />
+              ))}
+            </div>
+
+            {/* ── Secondary: frontend + everything else ── */}
+            <p className="text-[10px] tracking-[0.22em] uppercase text-white/25 font-mono mb-5">
+              Also comfortable with — frontend &amp; other tooling
+            </p>
+            <div className="flex flex-wrap gap-2.5">
+              {secondarySkills.map((skill, i) => (
+                <SecondaryChip key={skill.name} skill={skill} i={i} reduced={prefersReduced} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

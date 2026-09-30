@@ -1,11 +1,21 @@
 "use client";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
+import { Workflow } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
-import portfolio from "@/data/portfolio";
+import portfolio, { type Project } from "@/data/portfolio";
+
+// The diagram library (@xyflow/react) is only fetched once a visitor actually
+// opens a "View architecture" modal — never on initial page load.
+const ArchitectureDiagram = dynamic(() => import("@/components/ui/ArchitectureDiagram"), {
+  ssr: false,
+});
 
 export default function Projects() {
   const prefersReduced = useReducedMotion();
+  const [archProject, setArchProject] = useState<Project | null>(null);
 
   const container = {
     hidden: {},
@@ -68,6 +78,21 @@ export default function Projects() {
                 {project.description}
               </p>
 
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setArchProject(project);
+                }}
+                aria-haspopup="dialog"
+                aria-label={`View architecture diagram for ${project.name}`}
+                className="relative z-10 self-start inline-flex items-center gap-1.5 text-[11px] font-mono text-indigo-300/70 hover:text-indigo-300 border border-white/10 hover:border-indigo-400/40 rounded-full px-2.5 py-1 mb-4 transition-colors duration-200"
+              >
+                <Workflow size={12} />
+                View architecture
+              </button>
+
               <div className="flex flex-wrap gap-1.5 mt-auto">
                 {project.tech.map((t) => (
                   <span
@@ -82,6 +107,14 @@ export default function Projects() {
           ))}
         </motion.div>
       </div>
+
+      {archProject && (
+        <ArchitectureDiagram
+          key={archProject.name}
+          project={archProject}
+          onClose={() => setArchProject(null)}
+        />
+      )}
     </section>
   );
 }
