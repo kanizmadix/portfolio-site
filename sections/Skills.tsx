@@ -1,7 +1,9 @@
 "use client";
-import { ComponentType } from "react";
+import { ComponentType, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { LayoutGrid, Share2 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
+import KnowledgeGraph from "@/components/ui/KnowledgeGraph";
 
 // Real brand logos via react-icons
 import {
@@ -14,6 +16,7 @@ import {
 import {
   Cloud, Zap, Database, HardDrive, GitBranch,
   Brain, Search, Layers, Sparkles, FileSearch, Network, Bot, BarChart3, Cpu,
+  Plug, Workflow, Waypoints, TerminalSquare, ScrollText,
 } from "lucide-react";
 
 interface Skill {
@@ -23,41 +26,130 @@ interface Skill {
   color: string;
 }
 
-const skills: Skill[] = [
-  // ── Languages & Frameworks ──
-  { name: "Python",        icon: SiPython,      color: "#4B8BBE" },
-  { name: "JavaScript",    icon: SiJavascript,  color: "#F7DF1E" },
-  { name: "R",             icon: SiR,           color: "#276DC3" },
-  { name: "TensorFlow",    icon: SiTensorflow,  color: "#FF6F00" },
-  { name: "PyTorch",       icon: SiPytorch,     color: "#EE4C2C" },
-  { name: "FastAPI",       icon: SiFastapi,     color: "#00D4AA" },
-  { name: "Scikit-Learn",  icon: SiScikitlearn, color: "#F7931E" },
-  { name: "Pandas",        icon: SiPandas,      color: "#E070A0" },
-  { name: "NumPy",         icon: SiNumpy,       color: "#4DABCF" },
-  { name: "Docker",        icon: SiDocker,      color: "#2496ED" },
-  // ── Cloud & AWS ──
-  { name: "AWS",           icon: Cloud,         color: "#FF9900" },
-  { name: "Bedrock",       icon: Brain,         color: "#FF9900" },
-  { name: "Lambda",        icon: Zap,           color: "#FF9900" },
-  { name: "DynamoDB",      icon: Database,      color: "#4F8EF7" },
-  { name: "S3",            icon: HardDrive,     color: "#7FC042" },
-  { name: "Step Fn.",      icon: GitBranch,     color: "#FF4B6E" },
-  // ── AI & GenAI ──
-  { name: "Generative AI", icon: Cpu,           color: "#818CF8" },
-  { name: "RAG",           icon: Search,        color: "#A78BFA" },
-  { name: "LLM Pipelines", icon: Layers,        color: "#8B5CF6" },
-  { name: "Prompt Eng.",   icon: Sparkles,      color: "#6366F1" },
-  { name: "IDP",           icon: FileSearch,    color: "#EC4899" },
-  { name: "Vector DB",     icon: Network,       color: "#14B8A6" },
-  { name: "AI Agents",     icon: Bot,           color: "#10B981" },
-  { name: "Anthropic",     icon: SiAnthropic,   color: "#F0A500" },
-  // ── Data ──
-  { name: "SQL",           icon: SiMysql,       color: "#4479A1" },
-  { name: "Power BI",      icon: BarChart3,     color: "#F2C811" },
+// ── Primary: the daily stack — cloud, data, Python, and the GenAI/agent
+// engineering skills the "GenAI Engineer" title is actually built on. ──
+const primarySkills: Skill[] = [
+  // Python / backend
+  { name: "Python",              icon: SiPython,       color: "#4B8BBE" },
+  { name: "FastAPI",             icon: SiFastapi,       color: "#00D4AA" },
+  // Cloud
+  { name: "AWS",                 icon: Cloud,           color: "#FF9900" },
+  { name: "Bedrock",             icon: Brain,           color: "#FF9900" },
+  { name: "Lambda",              icon: Zap,             color: "#FF9900" },
+  { name: "DynamoDB",            icon: Database,        color: "#4F8EF7" },
+  { name: "S3",                  icon: HardDrive,       color: "#7FC042" },
+  { name: "Step Fn.",            icon: GitBranch,       color: "#FF4B6E" },
+  // Data
+  { name: "SQL",                 icon: SiMysql,         color: "#4479A1" },
+  { name: "Power BI",            icon: BarChart3,       color: "#F2C811" },
+  { name: "Data Eng.",           icon: Workflow,        color: "#0EA5E9" },
+  // GenAI, agents & the engineering practices around them
+  { name: "Generative AI",       icon: Cpu,             color: "#818CF8" },
+  { name: "Prompt Eng.",         icon: Sparkles,        color: "#6366F1" },
+  { name: "RAG",                 icon: Search,          color: "#A78BFA" },
+  { name: "LLM Pipelines",       icon: Layers,          color: "#8B5CF6" },
+  { name: "IDP",                 icon: FileSearch,      color: "#EC4899" },
+  { name: "Vector DB",           icon: Network,         color: "#14B8A6" },
+  { name: "AI Agents",           icon: Bot,             color: "#10B981" },
+  { name: "MCP",                 icon: Plug,            color: "#38BDF8" },
+  { name: "Agentic Workflows",   icon: Waypoints,       color: "#F59E0B" },
+  { name: "Harness Eng.",        icon: TerminalSquare,  color: "#F472B6" },
+  { name: "Context Eng.",        icon: ScrollText,      color: "#34D399" },
+  { name: "Anthropic",           icon: SiAnthropic,     color: "#F0A500" },
 ];
 
+// ── Secondary: frontend + everything else — comfortable with these, but
+// they're not the core of the day-to-day work above. ──
+const secondarySkills: Skill[] = [
+  { name: "JavaScript / MERN",  icon: SiJavascript,  color: "#F7DF1E" },
+  { name: "R",                  icon: SiR,           color: "#276DC3" },
+  { name: "TensorFlow",         icon: SiTensorflow,  color: "#FF6F00" },
+  { name: "PyTorch",            icon: SiPytorch,     color: "#EE4C2C" },
+  { name: "Scikit-Learn",       icon: SiScikitlearn, color: "#F7931E" },
+  { name: "Pandas",             icon: SiPandas,      color: "#E070A0" },
+  { name: "NumPy",              icon: SiNumpy,       color: "#4DABCF" },
+  { name: "Docker",             icon: SiDocker,      color: "#2496ED" },
+];
+
+function PrimaryTile({ skill, i, reduced }: { skill: Skill; i: number; reduced: boolean }) {
+  const Icon = skill.icon;
+  return (
+    <motion.div
+      initial={reduced ? {} : { opacity: 0, scale: 0.65, y: 32 }}
+      whileInView={reduced ? {} : { opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.45, delay: i * 0.035, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* Float + hover layer — runs continuously */}
+      <motion.div
+        animate={reduced ? {} : { y: [0, -(4 + (i % 7) * 1.1), 0] }}
+        transition={reduced ? {} : {
+          duration: 2.4 + (i % 6) * 0.45,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: (i % 9) * 0.3,
+        }}
+        whileHover={reduced ? {} : { scale: 1.13, y: -12 }}
+        className="flex flex-col items-center gap-2.5 py-4 px-2 rounded-2xl cursor-default select-none"
+        style={{
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.07)",
+          transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
+        }}
+        onMouseEnter={(e) => {
+          const el = e.currentTarget as HTMLElement;
+          el.style.background = `${skill.color}12`;
+          el.style.borderColor = `${skill.color}45`;
+          el.style.boxShadow = `0 0 28px ${skill.color}30`;
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget as HTMLElement;
+          el.style.background = "rgba(255,255,255,0.04)";
+          el.style.borderColor = "rgba(255,255,255,0.07)";
+          el.style.boxShadow = "none";
+        }}
+      >
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{ background: `${skill.color}18`, border: `1.5px solid ${skill.color}35` }}
+        >
+          <Icon size={22} color={skill.color} />
+        </div>
+        <span className="text-[9px] sm:text-[10px] text-white/50 text-center leading-tight font-medium px-1">
+          {skill.name}
+        </span>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function SecondaryChip({ skill, i, reduced }: { skill: Skill; i: number; reduced: boolean }) {
+  const Icon = skill.icon;
+  return (
+    <motion.div
+      initial={reduced ? {} : { opacity: 0, y: 14 }}
+      whileInView={reduced ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.4, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
+      className="flex items-center gap-2 pl-2 pr-3.5 py-2 rounded-full select-none"
+      style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.07)" }}
+    >
+      <div
+        className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
+        style={{ background: `${skill.color}15` }}
+      >
+        <Icon size={13} color={skill.color} />
+      </div>
+      <span className="text-[11px] text-white/45 font-medium whitespace-nowrap">{skill.name}</span>
+    </motion.div>
+  );
+}
+
+type SkillsView = "grid" | "graph";
+
 export default function Skills() {
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = !!useReducedMotion();
+  const [view, setView] = useState<SkillsView>("grid");
 
   return (
     <section
@@ -69,76 +161,77 @@ export default function Skills() {
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[300px] bg-[radial-gradient(ellipse,rgba(139,92,246,0.05)_0%,transparent_70%)] pointer-events-none blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <SectionHeading eyebrow="Skills" heading="What I work with" />
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+          <SectionHeading eyebrow="Skills" heading="What I work with" headingClass="mb-0" />
 
-        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-13 gap-3 md:gap-4">
-          {skills.map((skill, i) => {
-            const Icon = skill.icon;
-            return (
-              /* Entrance layer — fires once on scroll */
-              <motion.div
-                key={skill.name}
-                initial={prefersReduced ? {} : { opacity: 0, scale: 0.65, y: 32 }}
-                whileInView={prefersReduced ? {} : { opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{
-                  duration: 0.45,
-                  delay: i * 0.04,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                {/* Float + hover layer — runs continuously */}
-                <motion.div
-                  animate={prefersReduced ? {} : {
-                    y: [0, -(4 + (i % 7) * 1.1), 0],
-                  }}
-                  transition={prefersReduced ? {} : {
-                    duration: 2.4 + (i % 6) * 0.45,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: (i % 9) * 0.3,
-                  }}
-                  whileHover={prefersReduced ? {} : { scale: 1.13, y: -12 }}
-                  className="flex flex-col items-center gap-2.5 py-4 px-2 rounded-2xl cursor-default select-none"
+          {/* Grid / Graph view toggle */}
+          <div
+            role="tablist"
+            aria-label="Skills view"
+            className="flex items-center gap-1 p-1 rounded-full flex-shrink-0"
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            {(
+              [
+                { key: "grid" as const, label: "Grid", icon: LayoutGrid },
+                { key: "graph" as const, label: "Graph", icon: Share2 },
+              ]
+            ).map(({ key, label, icon: Icon }) => {
+              const active = view === key;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setView(key)}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-medium transition-colors cursor-pointer"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.07)",
-                    transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.background = `${skill.color}12`;
-                    el.style.borderColor = `${skill.color}45`;
-                    el.style.boxShadow = `0 0 28px ${skill.color}30`;
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.background = "rgba(255,255,255,0.04)";
-                    el.style.borderColor = "rgba(255,255,255,0.07)";
-                    el.style.boxShadow = "none";
+                    background: active ? "rgba(99,102,241,0.18)" : "transparent",
+                    color: active ? "#a5b4fc" : "rgba(255,255,255,0.45)",
+                    border: active ? "1px solid rgba(99,102,241,0.4)" : "1px solid transparent",
                   }}
                 >
-                  {/* Icon tile */}
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{
-                      background: `${skill.color}18`,
-                      border: `1.5px solid ${skill.color}35`,
-                    }}
-                  >
-                    <Icon size={22} color={skill.color} />
-                  </div>
-                  {/* Name */}
-                  <span
-                    className="text-[9px] sm:text-[10px] text-white/50 text-center leading-tight font-medium px-1"
-                  >
-                    {skill.name}
-                  </span>
-                </motion.div>
-              </motion.div>
-            );
-          })}
+                  <Icon size={13} />
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {view === "graph" ? (
+          <motion.div
+            initial={prefersReduced ? {} : { opacity: 0, y: 12 }}
+            animate={prefersReduced ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-16"
+          >
+            <KnowledgeGraph />
+          </motion.div>
+        ) : (
+          <>
+            {/* ── Primary: cloud, data, Python & the GenAI/agent stack ── */}
+            <p className="text-[10px] tracking-[0.22em] uppercase text-white/25 font-mono mb-5">
+              Core stack — cloud · data · GenAI &amp; agent engineering
+            </p>
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-11 gap-3 md:gap-4 mb-16">
+              {primarySkills.map((skill, i) => (
+                <PrimaryTile key={skill.name} skill={skill} i={i} reduced={prefersReduced} />
+              ))}
+            </div>
+
+            {/* ── Secondary: frontend + everything else ── */}
+            <p className="text-[10px] tracking-[0.22em] uppercase text-white/25 font-mono mb-5">
+              Also comfortable with — frontend &amp; other tooling
+            </p>
+            <div className="flex flex-wrap gap-2.5">
+              {secondarySkills.map((skill, i) => (
+                <SecondaryChip key={skill.name} skill={skill} i={i} reduced={prefersReduced} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

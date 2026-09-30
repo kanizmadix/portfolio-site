@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kanizmadix.github.io/portfolio-site/sitemap.xml

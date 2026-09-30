@@ -1,0 +1,304 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
+  "basics": {
+    "name": "Kanishk S",
+    "label": "Generative AI Engineer",
+    "email": "kanishk0070@gmail.com",
+    "url": "https://kanizmadix.github.io/portfolio-site/",
+    "summary": "I'm a Generative AI Engineer with hands-on experience designing and deploying LLM-powered systems. I specialise in prompt engineering, LLM pipeline architecture, RAG-based chatbots, and Intelligent Document Processing — delivering production-ready GenAI workflows on AWS. AWS Certified Solutions Architect – Associate.",
+    "location": {
+      "city": "Coimbatore",
+      "region": "Tamil Nadu"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "url": "https://github.com/kanizmadix",
+        "username": "kanizmadix"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/kanishk-s-25b1b225b/",
+        "username": "kanishk-s-25b1b225b"
+      },
+      {
+        "network": "Medium",
+        "url": "https://medium.com/@kanishk0070",
+        "username": "kanishk0070"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "AIVAR Innovations",
+      "position": "GEN AI Engineer",
+      "location": "Coimbatore",
+      "startDate": "2025-09",
+      "summary": "Full-time · AI and ML – AWS",
+      "highlights": [
+        "Engineered a retrieval-augmented (RAG) chatbot architecture delivering grounded, high-accuracy responses with minimised hallucinations.",
+        "Built scalable LLM-driven IDP pipelines for structured data extraction from complex financial and logistics documents.",
+        "Designed Generative Engine Optimisation (GEO) workflows transforming raw LLM outputs into actionable intelligence for product and business strategy."
+      ]
+    },
+    {
+      "name": "AIVAR Innovations",
+      "position": "Associate Data Engineer Intern",
+      "location": "Coimbatore",
+      "startDate": "2025-03",
+      "endDate": "2025-08",
+      "summary": "Internship · AI and ML – AWS",
+      "highlights": [
+        "Prototyped GenAI Chatbot (RAG) architecture on internal knowledge bases, significantly reducing hallucination rate.",
+        "Contributed to IDP pipelines for extracting structured data from financial and logistics PDFs.",
+        "Explored vector embeddings, FAISS-based similarity search, and context injection for production AI systems."
+      ]
+    },
+    {
+      "name": "Egger Pumps",
+      "position": "Industry 4.0 Transformation Intern",
+      "location": "Coimbatore",
+      "startDate": "2024-06",
+      "endDate": "2024-07",
+      "summary": "Internship · Data Analyst – AI and ML",
+      "highlights": [
+        "Implemented IoT-based Smart Pump Monitoring for real-time analytics.",
+        "Applied AI & ML models for predictive maintenance and data-driven operational insights.",
+        "Explored blockchain integration for supply chain transparency."
+      ]
+    },
+    {
+      "name": "Tamil Nadu Police",
+      "position": "Technical & Cybersecurity Intern",
+      "location": "Tamil Nadu",
+      "startDate": "2023-06",
+      "endDate": "2023-06",
+      "summary": "Internship · Data Analyst",
+      "highlights": [
+        "Conducted vulnerability assessments and penetration testing on IT infrastructure.",
+        "Assisted with incident response and digital forensics investigation workflows.",
+        "Contributed to network security hardening and system resilience measures."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Vellore Institute of Technology",
+      "studyType": "M.Sc. Data Science",
+      "area": "Data Science",
+      "startDate": "2025",
+      "endDate": "2027"
+    },
+    {
+      "institution": "Kumaraguru College of Liberal Arts and Science",
+      "studyType": "B.Sc. Data Science",
+      "area": "Data Science",
+      "startDate": "2022",
+      "endDate": "2025",
+      "gpa": "8.9 / 10"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming",
+      "keywords": [
+        "Python",
+        "JavaScript / MERN",
+        "R"
+      ]
+    },
+    {
+      "name": "Data",
+      "keywords": [
+        "SQL",
+        "Power BI",
+        "Data Engineering"
+      ]
+    },
+    {
+      "name": "Cloud",
+      "keywords": [
+        "AWS Bedrock",
+        "AWS Lambda",
+        "AWS Step Functions",
+        "DynamoDB",
+        "AWS S3"
+      ]
+    },
+    {
+      "name": "AI/ML",
+      "keywords": [
+        "Generative AI",
+        "Prompt Engineering",
+        "RAG",
+        "LLM Pipelines",
+        "Intelligent Document Processing",
+        "Vector Databases",
+        "AI Agents",
+        "Model Context Protocol (MCP)",
+        "Agentic Workflows",
+        "Harness Engineering",
+        "Context Engineering"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "keywords": [
+        "TensorFlow",
+        "PyTorch",
+        "Scikit-Learn",
+        "FastAPI",
+        "Pandas / NumPy"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Solutions Architect Associate (2025–2028)",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "name": "AWS Certified GenAI Developer – Professional",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "name": "Claude Certified Architect – Professional",
+      "issuer": "Anthropic"
+    },
+    {
+      "name": "Claude Certified Architect – Foundations",
+      "issuer": "Anthropic"
+    },
+    {
+      "name": "AI Powered Business Analytics — NUS Singapore",
+      "issuer": "National University of Singapore"
+    },
+    {
+      "name": "IBM Certified Python Data Science Professional",
+      "issuer": "IBM"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Formula One: Racing Intelligence in the Age of AI"
+    },
+    {
+      "name": "Formula One: Telemetry-Driven Brilliance on the Track"
+    },
+    {
+      "name": "Data-Driven Player Substitution Management System in Football"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Multi-Agent AI Planner",
+      "description": "3-agent orchestration (Planner → Executor → Validator) with live SSE streaming. Agents communicate via structured JSON; the frontend shows real-time progress.",
+      "keywords": [
+        "Python",
+        "FastAPI",
+        "Anthropic Claude",
+        "SSE",
+        "Pydantic"
+      ],
+      "url": "https://kanizmadix.github.io/ai-multi-agent-planner/"
+    },
+    {
+      "name": "RAG Document Q&A",
+      "description": "Enterprise-grade RAG pipeline — PDF extraction, FAISS vector indexing with sentence-transformers, and Claude-powered Q&A with inline source citations.",
+      "keywords": [
+        "Python",
+        "FAISS",
+        "sentence-transformers",
+        "Anthropic Claude",
+        "FastAPI"
+      ],
+      "url": "https://kanizmadix.github.io/ai-document-qa/"
+    },
+    {
+      "name": "AI Résumé Generator",
+      "description": "Generates ATS-optimised résumés and cover letters with skill matching, ATS scoring, interview prep, and PDF export. Prompt caching cuts cost by ~90%.",
+      "keywords": [
+        "Python",
+        "FastAPI",
+        "Anthropic Claude",
+        "ReportLab",
+        "SQLite"
+      ],
+      "url": "https://kanizmadix.github.io/ai-resume-generator/"
+    },
+    {
+      "name": "Natural Language → SQL",
+      "description": "Schema-aware NL-to-SQL engine with query explanation, optimisation hints, Mermaid ERD visualisation, and Excel/CSV export.",
+      "keywords": [
+        "Python",
+        "FastAPI",
+        "SQLite",
+        "Anthropic Claude",
+        "OpenPyXL"
+      ],
+      "url": "https://kanizmadix.github.io/ai-sql-assistant/"
+    },
+    {
+      "name": "Movie Recommendation System",
+      "description": "Hybrid content-based and collaborative filtering engine using IMDbPy. ML algorithms analyse user preferences to deliver personalised movie suggestions.",
+      "keywords": [
+        "Python",
+        "IMDbPy",
+        "Scikit-Learn",
+        "Pandas",
+        "Collaborative Filtering"
+      ],
+      "url": "https://github.com/kanizmadix/Movie-Recommender-System-master"
+    },
+    {
+      "name": "Formula One: Speed Meets Data",
+      "description": "F1 pitstop and lap-time analysis with 2025 standings prediction via linear regression. Includes Tableau dashboards and a Streamlit sponsor platform.",
+      "keywords": [
+        "Python",
+        "Tableau",
+        "Streamlit",
+        "Linear Regression",
+        "Pandas"
+      ],
+      "url": "https://github.com/kanizmadix/Formula1"
+    },
+    {
+      "name": "OpenTrails",
+      "description": "Open-data travel platform aggregating OpenStreetMap, Open-Meteo, Wikivoyage and Amadeus, with Claude generating day-by-day itineraries, packing lists and destination intel.",
+      "keywords": [
+        "Python",
+        "FastAPI",
+        "Anthropic Claude",
+        "httpx",
+        "Leaflet",
+        "SQLite"
+      ],
+      "url": "https://kanizmadix.github.io/opentrails/"
+    },
+    {
+      "name": "Nova — Multilingual Voice Assistant",
+      "description": "Offline wake-word assistant covering English plus 22 Indian languages, using AI4Bharat IndicTrans2, IndicConformer and Parler-TTS with faster-whisper for speech-to-text.",
+      "keywords": [
+        "Python",
+        "faster-whisper",
+        "AI4Bharat",
+        "PyTorch",
+        "FastAPI",
+        "WebSockets"
+      ],
+      "url": "https://kanizmadix.github.io/super-nova/"
+    },
+    {
+      "name": "Nova — Desktop Voice Control",
+      "description": "Wake-word CLI that transcribes speech locally with Whisper and drives real OS actions: launching apps, screenshots, clipboard, typing and system control across macOS, Linux and Windows.",
+      "keywords": [
+        "Python",
+        "faster-whisper",
+        "sounddevice",
+        "pyautogui",
+        "pyttsx3"
+      ],
+      "url": "https://kanizmadix.github.io/voice-nova/"
+    }
+  ]
+}

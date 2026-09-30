@@ -31,10 +31,13 @@ jobs:
       - run: npm ci
 
       - name: Build static export
+        # `npm run build` (not `npx next build`) so the "prebuild" lifecycle
+        # script regenerates public/resume.json, llms.txt, sitemap.xml and
+        # robots.txt from data/portfolio.ts before the export runs.
         # Turns on basePath/assetPrefix for the /portfolio-site subpath.
         env:
           GITHUB_PAGES: "true"
-        run: npx next build
+        run: npm run build
 
       - uses: actions/configure-pages@v5
 

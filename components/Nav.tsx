@@ -1,10 +1,13 @@
 "use client";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Command } from "lucide-react";
+import { OPEN_COMMAND_PALETTE_EVENT } from "@/components/ui/CommandPalette";
 
 const links = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Publications", href: "#publications" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
@@ -49,16 +52,27 @@ export default function Nav() {
               </li>
             ))}
           </ul>
-          <a
-            href="mailto:kanishk0070@gmail.com"
-            className="text-xs px-5 py-2 rounded-full font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-px"
-            style={{
-              background: "linear-gradient(135deg, #6366f1, #7c3aed)",
-              boxShadow: "0 0 20px rgba(99,102,241,0.25)",
-            }}
-          >
-            Hire me
-          </a>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_COMMAND_PALETTE_EVENT))}
+              aria-label="Ask my portfolio (Cmd+K)"
+              className="hidden sm:flex items-center gap-1.5 text-xs px-3.5 py-2 rounded-full text-white/50 hover:text-white border border-white/10 hover:border-white/25 transition-colors duration-200"
+            >
+              <Command size={12} />
+              <span className="font-mono">K</span>
+            </button>
+            <a
+              href="mailto:kanishk0070@gmail.com"
+              className="text-xs px-5 py-2 rounded-full font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-px"
+              style={{
+                background: "linear-gradient(135deg, #6366f1, #7c3aed)",
+                boxShadow: "0 0 20px rgba(99,102,241,0.25)",
+              }}
+            >
+              Hire me
+            </a>
+          </div>
         </nav>
       </motion.div>
     </motion.header>
