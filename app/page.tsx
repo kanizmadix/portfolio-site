@@ -3,6 +3,7 @@ import Hero from "@/sections/Hero";
 import About from "@/sections/About";
 import Skills from "@/sections/Skills";
 import Projects from "@/sections/Projects";
+import Publications from "@/sections/Publications";
 import Experience from "@/sections/Experience";
 import Contact from "@/sections/Contact";
 import Marquee from "@/components/ui/Marquee";
@@ -27,6 +28,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <Publications />
       <Experience />
       <Contact />
     </main>

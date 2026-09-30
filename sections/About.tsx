@@ -4,15 +4,15 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import portfolio from "@/data/portfolio";
 
-const stats = [
-  { value: "1+", label: "Years at AIVAR" },
-  { value: "9+", label: "AI Projects Shipped" },
-  { value: "8.9", label: "CGPA" },
-  { value: "3×", label: "Certified" },
-];
-
 export default function About() {
   const prefersReduced = useReducedMotion();
+
+  const stats = [
+    { value: "1+", label: "Years at AIVAR" },
+    { value: "9+", label: "AI Projects Shipped" },
+    { value: "8.9", label: "CGPA" },
+    { value: `${portfolio.certifications.length}×`, label: "Certified" },
+  ];
 
   return (
     <section id="about" className="relative px-6 md:px-16 lg:px-24 py-32 md:py-48 overflow-hidden">
@@ -91,15 +91,27 @@ export default function About() {
 
             {/* Card */}
             <div className="md:col-span-2 space-y-5 text-sm bg-white/[0.025] border border-white/[0.08] rounded-2xl p-6">
-              <div>
+              <div className="space-y-4">
                 <p className="text-[9px] tracking-[0.24em] uppercase text-white/22 mb-2 font-mono">
                   Education
                 </p>
-                <p className="text-white font-medium">{portfolio.education.degree}</p>
-                <p className="text-white/50 text-[13px]">{portfolio.education.institution}</p>
-                <p className="text-white/25 text-[11px] font-mono mt-1">
-                  {portfolio.education.period} · CGPA {portfolio.education.cgpa}
-                </p>
+                {portfolio.education.map((edu) => (
+                  <div key={edu.degree}>
+                    <p className="text-white font-medium">
+                      {edu.degree}
+                      {edu.inProgress && (
+                        <span className="ml-2 text-[9px] text-indigo-400 font-mono align-middle">
+                          in progress
+                        </span>
+                      )}
+                    </p>
+                    <p className="text-white/50 text-[13px]">{edu.institution}</p>
+                    <p className="text-white/25 text-[11px] font-mono mt-1">
+                      {edu.period}
+                      {edu.cgpa && ` · CGPA ${edu.cgpa}`}
+                    </p>
+                  </div>
+                ))}
               </div>
               <div className="border-t border-white/[0.07] pt-4">
                 <p className="text-[9px] tracking-[0.24em] uppercase text-white/22 mb-2 font-mono">

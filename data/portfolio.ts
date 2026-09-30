@@ -5,6 +5,20 @@ export interface Project {
   link: string;
 }
 
+export interface Publication {
+  title: string;
+  relatedProject?: string;
+}
+
+export interface EducationItem {
+  degree: string;
+  institution: string;
+  period: string;
+  cgpa?: string;
+  location: string;
+  inProgress?: boolean;
+}
+
 export interface ExperienceItem {
   title: string;
   company: string;
@@ -33,6 +47,7 @@ const portfolio = {
   // Set to your full LinkedIn profile URL. Left empty, the Contact card is
   // omitted rather than rendering a broken link.
   linkedin: "https://www.linkedin.com/in/kanishk-s-25b1b225b/",
+  medium: "https://medium.com/@kanishk0070",
 
   skills: [
     { name: "Python", category: "Programming" },
@@ -52,6 +67,11 @@ const portfolio = {
     { name: "Intelligent Document Processing", category: "AI/ML" },
     { name: "Vector Databases", category: "AI/ML" },
     { name: "AI Agents", category: "AI/ML" },
+    { name: "Model Context Protocol (MCP)", category: "AI/ML" },
+    { name: "Agentic Workflows", category: "AI/ML" },
+    { name: "Harness Engineering", category: "AI/ML" },
+    { name: "Context Engineering", category: "AI/ML" },
+    { name: "Data Engineering", category: "Data" },
     { name: "TensorFlow", category: "Frameworks" },
     { name: "PyTorch", category: "Frameworks" },
     { name: "Scikit-Learn", category: "Frameworks" },
@@ -192,17 +212,43 @@ const portfolio = {
 
   certifications: [
     "AWS Solutions Architect Associate (2025–2028)",
+    "AWS Certified GenAI Developer – Professional",
+    "Claude Certified Architect – Professional",
+    "Claude Certified Architect – Foundations",
     "AI Powered Business Analytics — NUS Singapore",
     "IBM Certified Python Data Science Professional",
   ],
 
-  education: {
-    degree: "B.Sc. Data Science",
-    institution: "Kumaraguru College of Liberal Arts and Science",
-    period: "2022 – 2025",
-    cgpa: "8.9 / 10",
-    location: "Coimbatore, Tamil Nadu",
-  },
+  education: [
+    {
+      degree: "M.Sc. Data Science",
+      institution: "Vellore Institute of Technology",
+      period: "2025 – 2027",
+      location: "Vellore, Tamil Nadu",
+      inProgress: true,
+    },
+    {
+      degree: "B.Sc. Data Science",
+      institution: "Kumaraguru College of Liberal Arts and Science",
+      period: "2022 – 2025",
+      cgpa: "8.9 / 10",
+      location: "Coimbatore, Tamil Nadu",
+    },
+  ] as EducationItem[],
+
+  publications: [
+    {
+      title: "Formula One: Racing Intelligence in the Age of AI",
+      relatedProject: "Formula One: Speed Meets Data",
+    },
+    {
+      title: "Formula One: Telemetry-Driven Brilliance on the Track",
+      relatedProject: "Formula One: Speed Meets Data",
+    },
+    {
+      title: "Data-Driven Player Substitution Management System in Football",
+    },
+  ] as Publication[],
 };
 
 export type PortfolioData = typeof portfolio;
